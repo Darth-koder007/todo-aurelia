@@ -1,8 +1,25 @@
 <template>
+	<!-- Heading of page -->
 	<h1>${heading}</h1>
 
+	<!--Form to save todo task -->
 	<form submit.trigger="addTodo()">
 		<input type="text" value.bind="todoDescription">
 		<button type="submit">Add Todo</button>
 	</form>
+
+	<!-- List of todo created -->
+	<ul>
+	    <!-- for...of loop (es6) todos and display all todo in it -->
+		<li repeat.for="todo of todos">
+		    <!--Checkbox to delete todo  -->
+			<input type="checkbox" name="done" checked.bind="todo.done">
+			<!-- Todo description -->
+			<span css="text-decoration: ${todo.done ? 'line-through' : 'none'}">
+				${todo.description}
+			</span>
+			<!-- button to delete checked todo -->
+			<button type="button" click.trigger="removeTodo(todo)">Remove</button>
+		</li>
+	</ul>
 </template>
